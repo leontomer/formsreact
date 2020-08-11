@@ -15,18 +15,25 @@ export default function FormSubmit(props) {
   let history = useHistory();
 
   useEffect(() => {
-    (async function getName() {
+    (async function getFormNameFunc() {
       const formNameRes = await getFormName(props.match.params.FormId);
       setFormName(formNameRes.data.formName);
     })();
   });
 
   useEffect(() => {
-    (async function getFields() {
-      const fieldsRes = await getFormFields(props.match.params.FormId);
-      setFields(fieldsRes.data);
-    })();
-  });
+    getFormFields(props.match.params.FormId).then((res) => {
+      setFields(res.data);
+      for (let i = 0; i < fields.length; i++) {
+        inputVal[fields[i]._id] = "";
+      }
+
+      //setType(res.data.inputType);
+    });
+    //console.log(forms);
+
+    //console.log(forms);
+  }, []);
 
   const handleSubmit = () => {
     (async function addInputs() {

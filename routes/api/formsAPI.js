@@ -31,13 +31,19 @@ router.route("/getForms").get(async (req, res) => {
   }
 });
 
-router.route("/getFormName").get(async (req, res) => {
-  try {
-    form = Form.findById(req.query.id);
-    res.json(form);
-  } catch (error) {
-    res.status(400).json("Error: " + error);
-  }
+// router.route("/getFormName").get(async (req, res) => {
+//   try {
+//     form = Form.findById(req.query.id);
+//     res.json(form);
+//   } catch (error) {
+//     res.status(400).json("Error: " + error);
+//   }
+// });
+
+router.route("/getFormName").get((req, res) => {
+  Form.findById(req.query.id)
+    .then((form) => res.json(form))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.route("/getFormInputs").get(async (req, res) => {
