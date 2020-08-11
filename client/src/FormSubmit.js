@@ -8,10 +8,10 @@ import { getFormFields } from "./actions/getFormFields";
 import { addFormInput } from "./actions/addFormInput";
 
 export default function FormSubmit(props) {
-  const inputName = useState("");
+  const [inputName] = useState("");
   const [fields, setFields] = useState([]);
   const [formName, setFormName] = useState("");
-  const inputVal = useState({});
+  const [inputVal] = useState({});
   let history = useHistory();
 
   useEffect(() => {
