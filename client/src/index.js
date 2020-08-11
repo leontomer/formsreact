@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import FormsList from "./client/src/FormsList";
+import FormsList from "./FormsList";
 
 ReactDOM.render(
   <React.StrictMode>
