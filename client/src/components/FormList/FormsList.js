@@ -15,17 +15,14 @@ function FormsList(props) {
   const [forms, setForms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   let index = 1;
-  function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-  }
 
   useEffect(() => {
     (async function getFormsFunc() {
       const formsRes = await getForms();
       setForms(formsRes.data);
-      sleep(500).then(() => {
+      setTimeout(() => {
         setIsLoading(false);
-      });
+      }, 500);
     })();
   }, [isLoading]);
 
