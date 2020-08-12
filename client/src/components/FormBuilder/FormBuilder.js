@@ -33,6 +33,11 @@ export default function FormBuilder(props) {
     e.preventDefault();
   };
 
+  const BackToMainPage = () => {
+    history.push("/");
+    history.go();
+  };
+
   return (
     <div
       style={{
@@ -140,6 +145,16 @@ export default function FormBuilder(props) {
                   startIcon={<SaveIcon />}
                 >
                   Save
+                </Button>
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  onClick={BackToMainPage}
+                >
+                  Back
                 </Button>
               </div>
             </div>

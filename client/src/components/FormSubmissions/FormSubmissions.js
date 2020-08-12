@@ -26,7 +26,7 @@ export default function FormSubmissions(props) {
     })();
   }, []);
 
-  const ReturnToMainPage = () => {
+  const BackToMainPage = () => {
     history.push("/");
     history.go();
   };
@@ -60,7 +60,7 @@ export default function FormSubmissions(props) {
           variant="contained"
           color="primary"
           size="small"
-          onClick={ReturnToMainPage}
+          onClick={BackToMainPage}
           style={{ marginTop: "3vh" }}
         >
           Back

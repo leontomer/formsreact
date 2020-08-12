@@ -35,10 +35,10 @@ export default function FormSubmit(props) {
     (async function addInputs() {
       await addFormInput(props.match.params.FormId, inputName, inputVal);
     })();
-    ReturnToMainPage();
+    BackToMainPage();
   };
 
-  const ReturnToMainPage = () => {
+  const BackToMainPage = () => {
     history.push("/");
     history.go();
   };
@@ -94,7 +94,7 @@ export default function FormSubmit(props) {
               variant="contained"
               color="primary"
               size="small"
-              onClick={ReturnToMainPage}
+              onClick={BackToMainPage}
               style={{ marginTop: "2vh" }}
             >
               Back
