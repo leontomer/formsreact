@@ -6,13 +6,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { getFormFields } from "./actions/getFormFields";
-import { getFormInputs } from "./actions/getFormInputs";
+import { getFormFields, getFormInputs } from "./actions/FormSubmissionsActions";
 
 export default function FormSubmissions(props) {
   const [formFields, setFormFields] = useState([]);
   const [formInputs, setFormInputs] = useState([]);
-  let i = 0;
+
   useEffect(() => {
     (async function getFields() {
       const fieldsRes = await getFormFields(props.match.params.FormId);
@@ -22,25 +21,25 @@ export default function FormSubmissions(props) {
       const inputsRes = await getFormInputs(props.match.params.FormId);
       setFormInputs(inputsRes.data);
     })();
-  });
+  }, []);
 
   return (
     <div className="FormsList">
       <TableContainer component={Paper}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow key={i++}>
-              {formFields.map((field) => {
-                return <TableCell key={i++}>{field.inputName}</TableCell>;
+            <TableRow>
+              {formFields.map((field, index) => {
+                return <TableCell key={index}>{field.inputName}</TableCell>;
               })}
             </TableRow>
           </TableHead>
 
           <TableBody>
-            {formInputs.map((rows) => (
-              <TableRow key={i++}>
-                {rows.inputs.map((input) => (
-                  <TableCell key={i++}>{input}</TableCell>
+            {formInputs.map((rows, index) => (
+              <TableRow key={index}>
+                {rows.inputs.map((input, index) => (
+                  <TableCell key={index}>{input}</TableCell>
                 ))}
               </TableRow>
             ))}

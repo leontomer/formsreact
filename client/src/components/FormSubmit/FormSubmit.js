@@ -3,17 +3,18 @@ import Container from "@material-ui/core/Container";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
-import { getFormName } from "./actions/getFormName";
-import { getFormFields } from "./actions/getFormFields";
-import { addFormInput } from "./actions/addFormInput";
+import {
+  getFormName,
+  getFormFields,
+  addFormInput,
+} from "./actions/FormSubmitActions";
 
 export default function FormSubmit(props) {
   const [inputName] = useState("");
   const [fields, setFields] = useState([]);
   const [formName, setFormName] = useState("");
   const [inputVal] = useState({});
-  let history = useHistory();
-  let i = 0;
+  const history = useHistory();
 
   useEffect(() => {
     (async function getFormNameFunc() {
@@ -43,14 +44,11 @@ export default function FormSubmit(props) {
       <div>
         {formName}
         <br></br>
-
+        <br></br>
         <form onSubmit={handleSubmit}>
-          {fields.map((field) => (
-            <div key={i++}>
-              <label htmlFor="flabel" key={i++}>
-                {" "}
-                {field.inputType}:{" "}
-              </label>
+          {fields.map((field, index) => (
+            <div key={index}>
+              <label htmlFor="flabel"> {field.inputType}: </label>
               <br />
               <input
                 required
@@ -58,7 +56,6 @@ export default function FormSubmit(props) {
                 name={field.inputName}
                 value={inputVal[field._id]}
                 onChange={(name) => (inputVal[field._id] = name.target.value)}
-                key={i++}
               ></input>
               <br></br>
             </div>

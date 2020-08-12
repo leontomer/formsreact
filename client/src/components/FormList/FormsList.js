@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getForms } from "./actions/getForms";
+import { getForms } from "./actions/FormListActions";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -14,8 +14,13 @@ import "./styles/formListLoader.css";
 function FormsList(props) {
   const [forms, setForms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  let index = 1;
 
+  const headerNames = [
+    "Form Name",
+    "# Submissions",
+    "Submit Page",
+    "Submissions Page",
+  ];
   useEffect(() => {
     (async function getFormsFunc() {
       const formsRes = await getForms();
@@ -52,23 +57,20 @@ function FormsList(props) {
                 <TableHead>
                   <TableRow>
                     <TableCell>Form Id</TableCell>
-
-                    <TableCell align="right">Form Name</TableCell>
-
-                    <TableCell align="right"># Submissions</TableCell>
-
-                    <TableCell align="right">Submit Page </TableCell>
-
-                    <TableCell align="right">Submissions Page</TableCell>
+                    {headerNames.map((headerName, index) => (
+                      <TableCell key={index} align="right">
+                        {headerName}
+                      </TableCell>
+                    ))}
                   </TableRow>
                 </TableHead>
 
                 <TableBody>
-                  {forms.map((form) => {
+                  {forms.map((form, index) => {
                     return (
                       <TableRow key={form._id}>
                         <TableCell component="th" scope="row">
-                          {index++}
+                          {index + 1}
                         </TableCell>
 
                         <TableCell align="right">{form.formName}</TableCell>

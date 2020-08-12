@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addForm } from "./actions/addForm";
+import { addForm } from "./actions/FormBuilderActions";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import SaveIcon from "@material-ui/icons/Save";
@@ -15,10 +15,9 @@ export default function FormBuilder(props) {
   const [formName, setFormName] = useState("");
   const [fields, setFields] = useState([]);
   const types = ["text", "color", "date", "email", "tel", "number"];
-  let history = useHistory();
+  const history = useHistory();
 
   const onSave = () => {
-    console.log(fields);
     (async function addFormFunc() {
       await addForm(formName, fields);
     })();
@@ -71,8 +70,10 @@ export default function FormBuilder(props) {
             onChange={(text) => setInputType(text.target.value)}
             label="Type"
           >
-            {types.map((type) => (
-              <MenuItem value={type}>{type}</MenuItem>
+            {types.map((type, index) => (
+              <MenuItem key={index} value={type}>
+                {type}
+              </MenuItem>
             ))}
           </Select>
           <br></br>
@@ -109,9 +110,10 @@ export default function FormBuilder(props) {
           </Button>
         </form>
         <br></br>
-        {fields.map((field) => (
-          <div>
+        {fields.map((field, index) => (
+          <div key={index}>
             <TextField
+              key={index}
               label={field.fieldLabel}
               name={field.inputName}
               type={field.inputType}

@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" render={() => <FormList />} />
+        <Route exact path="/" component={FormList} />
         <Route exact path="/FormBuilder" component={FormBuilder} />
         <Route exact path="/FormSubmit/:FormId" component={FormSubmit} />
         <Route
