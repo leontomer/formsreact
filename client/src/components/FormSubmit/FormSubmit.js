@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Container from "@material-ui/core/Container";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
@@ -36,42 +35,73 @@ export default function FormSubmit(props) {
     (async function addInputs() {
       await addFormInput(props.match.params.FormId, inputName, inputVal);
     })();
+    ReturnToMainPage();
+  };
+
+  const ReturnToMainPage = () => {
     history.push("/");
     history.go();
   };
+
   return (
-    <Container fixed>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        height: "100vh",
+      }}
+    >
       <div>
-        {formName}
-        <br></br>
-        <br></br>
+        <h2> {formName}</h2>
+
         <form onSubmit={handleSubmit}>
-          {fields.map((field, index) => (
-            <div key={index}>
-              <label htmlFor="flabel"> {field.inputType}: </label>
-              <br />
-              <input
-                required
-                type={field.inputType}
-                name={field.inputName}
-                value={inputVal[field._id]}
-                onChange={(name) => (inputVal[field._id] = name.target.value)}
-              ></input>
-              <br></br>
-            </div>
-          ))}
-          <br />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            size="small"
-            startIcon={<SaveIcon />}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              flexDirection: "column",
+            }}
           >
-            Save
-          </Button>
+            {fields.map((field, index) => (
+              <div key={index}>
+                <label htmlFor="flabel"> {field.inputType}: </label>
+                <input
+                  style={{ margin: 10 }}
+                  required
+                  type={field.inputType}
+                  name={field.inputName}
+                  value={inputVal[field._id]}
+                  onChange={(name) => (inputVal[field._id] = name.target.value)}
+                ></input>
+              </div>
+            ))}
+          </div>
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              size="small"
+              startIcon={<SaveIcon />}
+            >
+              Save
+            </Button>
+          </div>
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={ReturnToMainPage}
+              style={{ marginTop: "2vh" }}
+            >
+              Back
+            </Button>
+          </div>
         </form>
       </div>
-    </Container>
+    </div>
   );
 }
