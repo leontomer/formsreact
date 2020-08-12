@@ -10,11 +10,11 @@ https://formsreact.herokuapp.com/
    <br />
    2.2) enter with the command line to the project folder<br />
    2.3) enter and run the commands:<br />
-   2.3.1) `npm i`<br />
-   2.3.2) `npm start`<br />
+   &#09;2.3.1) `npm i`<br />
+   &#09;2.3.2) `npm start`<br />
    2.4) open new terminal, repeat step 2.2 and than run:<br />
-   2.4.1) `cd client`<br />
-   2.4.2) `npm i`<br />
-   2.4.3) `npm start`<br />
+   &#09;2.4.1) `cd client`<br />
+   &#09;2.4.2) `npm i`<br />
+   &#09;2.4.3) `npm start`<br />
 
 enjoy!
