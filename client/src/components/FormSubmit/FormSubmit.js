@@ -13,6 +13,7 @@ export default function FormSubmit(props) {
   const [formName, setFormName] = useState("");
   const [inputVal] = useState({});
   let history = useHistory();
+  let i = 0;
 
   useEffect(() => {
     (async function getFormNameFunc() {
@@ -27,12 +28,7 @@ export default function FormSubmit(props) {
       for (let i = 0; i < fields.length; i++) {
         inputVal[fields[i]._id] = "";
       }
-
-      //setType(res.data.inputType);
     });
-    //console.log(forms);
-
-    //console.log(forms);
   }, []);
 
   const handleSubmit = () => {
@@ -50,8 +46,11 @@ export default function FormSubmit(props) {
 
         <form onSubmit={handleSubmit}>
           {fields.map((field) => (
-            <div>
-              <label htmlFor="flabel"> {field.inputType}: </label>
+            <div key={i++}>
+              <label htmlFor="flabel" key={i++}>
+                {" "}
+                {field.inputType}:{" "}
+              </label>
               <br />
               <input
                 required
@@ -59,6 +58,7 @@ export default function FormSubmit(props) {
                 name={field.inputName}
                 value={inputVal[field._id]}
                 onChange={(name) => (inputVal[field._id] = name.target.value)}
+                key={i++}
               ></input>
               <br></br>
             </div>
