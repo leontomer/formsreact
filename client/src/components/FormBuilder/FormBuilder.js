@@ -14,7 +14,7 @@ export default function FormBuilder(props) {
   const [inputType, setInputType] = useState("text");
   const [formName, setFormName] = useState("");
   const [fields, setFields] = useState([]);
-
+  const types = ["text", "color", "date", "email", "tel", "number"];
   let history = useHistory();
 
   const onSave = () => {
@@ -71,12 +71,15 @@ export default function FormBuilder(props) {
             onChange={(text) => setInputType(text.target.value)}
             label="Type"
           >
-            <MenuItem value="text">text</MenuItem>
+            {types.map((type) => (
+              <MenuItem value={type}>{type}</MenuItem>
+            ))}
+            {/* <MenuItem value="text">text</MenuItem>
             <MenuItem value="color">color</MenuItem>
             <MenuItem value="date">date</MenuItem>
             <MenuItem value="email">email</MenuItem>
             <MenuItem value="tel">tel</MenuItem>
-            <MenuItem value="number">number</MenuItem>
+            <MenuItem value="number">number</MenuItem> */}
           </Select>
           <br></br>
 

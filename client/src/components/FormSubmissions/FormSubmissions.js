@@ -12,7 +12,7 @@ import { getFormInputs } from "./actions/getFormInputs";
 export default function FormSubmissions(props) {
   const [formFields, setFormFields] = useState([]);
   const [formInputs, setFormInputs] = useState([]);
-
+  let i = 0;
   useEffect(() => {
     (async function getFields() {
       const fieldsRes = await getFormFields(props.match.params.FormId);
@@ -29,18 +29,18 @@ export default function FormSubmissions(props) {
       <TableContainer component={Paper}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow key={formFields._id}>
+            <TableRow key={i++}>
               {formFields.map((field) => {
-                return <TableCell>{field.inputName}</TableCell>;
+                return <TableCell key={i++}>{field.inputName}</TableCell>;
               })}
             </TableRow>
           </TableHead>
 
           <TableBody>
             {formInputs.map((rows) => (
-              <TableRow>
+              <TableRow key={i++}>
                 {rows.inputs.map((input) => (
-                  <TableCell>{input}</TableCell>
+                  <TableCell key={i++}>{input}</TableCell>
                 ))}
               </TableRow>
             ))}
