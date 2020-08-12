@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -35,92 +34,130 @@ export default function FormBuilder(props) {
   };
 
   return (
-    <Container fixed>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        height: "100vh",
+      }}
+    >
       <div>
-        <form onSubmit={onSubmit}>
-          <br></br>
-          <label htmlFor="flabel"> field label: </label>
+        <h1>Create a form</h1>
+        <div>
+          <form onSubmit={onSubmit}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
+                alignItems: "flex-start",
+                height: "200px",
+              }}
+            >
+              <div>
+                <label htmlFor="flabel"> field label: </label>
 
-          <input
-            required
-            type="text"
-            id="flabel"
-            label="Required"
-            value={fieldLabel}
-            onChange={(text) => setFieldLabel(text.target.value)}
-          />
-          <br />
+                <input
+                  required
+                  type="text"
+                  id="flabel"
+                  label="Required"
+                  value={fieldLabel}
+                  onChange={(text) => setFieldLabel(text.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="iname">input name: </label>
+                <input
+                  required
+                  type="text"
+                  id="iname"
+                  name="iname"
+                  value={inputName}
+                  onChange={(text) => setInputName(text.target.value)}
+                />
+              </div>
+              <div>
+                <Select
+                  required
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  value={inputType}
+                  onChange={(text) => setInputType(text.target.value)}
+                  label="Type"
+                  labelWidth={50}
+                  style={{ width: "200px" }}
+                >
+                  {types.map((type, index) => (
+                    <MenuItem key={index} value={type}>
+                      {type}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </div>
 
-          <label htmlFor="iname">input name: </label>
-          <input
-            required
-            type="text"
-            id="iname"
-            name="iname"
-            value={inputName}
-            onChange={(text) => setInputName(text.target.value)}
-          />
-          <br />
+              <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                type="submit"
+              >
+                Add
+              </Button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <form onSubmit={onSave}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+                height: "100px",
+              }}
+            >
+              <div>
+                <label htmlFor="formname">form name: </label>
 
-          <Select
-            required
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={inputType}
-            onChange={(text) => setInputType(text.target.value)}
-            label="Type"
-          >
-            {types.map((type, index) => (
-              <MenuItem key={index} value={type}>
-                {type}
-              </MenuItem>
-            ))}
-          </Select>
-          <br></br>
-
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            type="submit"
-          >
-            Add
-          </Button>
-        </form>
-        <br></br>
-        <form onSubmit={onSave}>
-          <label htmlFor="formname">form name: </label>
-          <input
-            required
-            type="text"
-            id="formname"
-            name="formname"
-            value={formName}
-            onChange={(text) => setFormName(text.target.value)}
-          />
-
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            type="submit"
-            startIcon={<SaveIcon />}
-          >
-            Save
-          </Button>
-        </form>
-        <br></br>
-        {fields.map((field, index) => (
-          <div key={index}>
-            <TextField
-              key={index}
-              label={field.fieldLabel}
-              name={field.inputName}
-              type={field.inputType}
-            />
-          </div>
-        ))}
+                <input
+                  required
+                  type="text"
+                  id="formname"
+                  name="formname"
+                  value={formName}
+                  onChange={(text) => setFormName(text.target.value)}
+                />
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  type="submit"
+                  startIcon={<SaveIcon />}
+                >
+                  Save
+                </Button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div>
+          {fields.map((field, index) => (
+            <div key={index}>
+              <TextField
+                key={index}
+                label={field.fieldLabel}
+                name={field.inputName}
+                type={field.inputType}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </Container>
+    </div>
   );
 }
