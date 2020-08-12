@@ -74,12 +74,6 @@ export default function FormBuilder(props) {
             {types.map((type) => (
               <MenuItem value={type}>{type}</MenuItem>
             ))}
-            {/* <MenuItem value="text">text</MenuItem>
-            <MenuItem value="color">color</MenuItem>
-            <MenuItem value="date">date</MenuItem>
-            <MenuItem value="email">email</MenuItem>
-            <MenuItem value="tel">tel</MenuItem>
-            <MenuItem value="number">number</MenuItem> */}
           </Select>
           <br></br>
 
