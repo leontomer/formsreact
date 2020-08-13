@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -169,6 +170,22 @@ export default function FormBuilder(props) {
                 name={field.inputName}
                 type={field.inputType}
               />
+
+              <Button
+                variant="contained"
+                style={{ marginTop: "20px" }}
+                color="primary"
+                size="small"
+                type="submit"
+                startIcon={<DeleteIcon />}
+                onClick={() =>
+                  setFields(
+                    fields.filter(function (ele) {
+                      return ele != field;
+                    })
+                  )
+                }
+              ></Button>
             </div>
           ))}
         </div>
