@@ -1,3 +1,7 @@
+### Form Builder
+
+this project was built with the MERN stack-MongoDB, Express, React and Node JS.
+
 ## Instructions
 
 you have 2 options in order to run this project:
